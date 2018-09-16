@@ -95,9 +95,9 @@ void minute_increment()
     while (1) {
         minute_inc.wait_all(0x1);
 
-        // Only have 2 digits, so this has to roll over and start everything
-        // from 00:00:000 when the timer hits 99:99:999
-        if (minute_count < 99) {
+        // Entire timer has to roll over at 59:99:999
+		// Seconds and ms taken care of in their own threads
+        if (minute_count < 59) {
             minute_count ++;
         } else {
             minute_count = 0;
